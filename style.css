@@ -1,11 +1,6 @@
 /* =========================================================
-   HOMEM E A MÁQUINA
-   GRUPO 2 — MÁQUINA PRINCIPAL
-   ========================================================= */
-
-
-/* =========================================================
-   RESET
+   HOMEM E A MÁQUINA — GRUPO 2
+   MÁQUINA PRINCIPAL
    ========================================================= */
 
 * {
@@ -14,212 +9,170 @@
   padding: 0;
 }
 
-
 html,
 body {
   width: 100%;
   height: 100%;
 }
 
-
 body {
   width: 100%;
   height: 100vh;
-
   overflow: hidden;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
   background:
     radial-gradient(
-      circle at 50% 48%,
-      #111a25 0%,
-      #0b1017 38%,
-      #070a0f 72%,
-      #05070a 100%
+      ellipse at 50% 42%,
+      #101a25 0%,
+      #080e15 42%,
+      #05080d 72%,
+      #030508 100%
     );
-
-  color: #eef3f8;
+  color: #eef6fb;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-
 /* =========================================================
-   TELA PRINCIPAL
+   ECRÃ PRINCIPAL
    ========================================================= */
 
 .machine-screen {
   position: relative;
-
   width: 100%;
   height: 100vh;
-
   overflow: hidden;
-
   isolation: isolate;
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(82, 170, 215, 0.075) 0%,
+      rgba(40, 100, 140, 0.035) 32%,
+      transparent 68%
+    );
 }
 
-
-/* =========================================================
-   LUZ AMBIENTE GERAL
-   ========================================================= */
+/* Luz ambiente muito discreta da própria Máquina */
 
 .machine-screen::before {
   content: "";
-
   position: absolute;
-
-  width: 55vw;
-  height: 55vw;
-
-  max-width: 500px;
-  max-height: 500px;
-
   left: 50%;
-  top: 50%;
-
+  top: 43%;
+  width: 560px;
+  height: 420px;
   transform: translate(-50%, -50%);
-
-  border-radius: 50%;
+  pointer-events: none;
+  z-index: -3;
 
   background:
     radial-gradient(
-      circle,
-      rgba(78, 123, 157, 0.055),
-      transparent 70%
+      ellipse at center,
+      rgba(135, 222, 255, 0.075) 0%,
+      rgba(77, 169, 215, 0.045) 28%,
+      rgba(35, 101, 145, 0.025) 48%,
+      transparent 72%
     );
 
-  filter: blur(80px);
-
-  pointer-events: none;
+  filter: blur(30px);
+  opacity: 0.9;
+  animation: screen-breath 8s ease-in-out infinite;
 }
 
+@keyframes screen-breath {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.96);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.04);
+    opacity: 0.95;
+  }
+}
 
 /* =========================================================
-   BARRA SUPERIOR
+   TOPO
    ========================================================= */
 
 .top-bar {
   position: absolute;
-
-  z-index: 20;
-
   top: 0;
   left: 0;
-
   width: 100%;
 
-  padding:
-    18px
-    18px
-    0
-    18px;
-
   display: flex;
-
   align-items: center;
   justify-content: space-between;
+
+  padding: 18px 20px;
+  z-index: 20;
 }
 
+.machine-logo,
+.top-button {
+  width: 48px;
+  height: 48px;
 
-/* =========================================================
-   LOGO DA MÁQUINA
-   ========================================================= */
-
-.machine-logo {
-  width: 54px;
-  height: 54px;
-
-  border: 1px solid rgba(190, 210, 225, 0.16);
-
-  border-radius: 15px;
+  border: 1px solid rgba(155, 222, 247, 0.22);
+  border-radius: 14px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.015)
+      rgba(27, 42, 54, 0.82),
+      rgba(7, 13, 19, 0.92)
     );
 
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.09),
-    0 8px 30px rgba(0, 0, 0, 0.35);
-
-  color: #dce9f2;
-
-  cursor: pointer;
+  color: #dff7ff;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 25px rgba(0, 0, 0, 0.28),
+    0 0 18px rgba(90, 190, 230, 0.05);
+
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+.machine-logo:hover,
+.top-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(160, 229, 255, 0.48);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 30px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(90, 200, 240, 0.14);
+}
+
+.machine-logo:active,
+.top-button:active {
+  transform: scale(0.95);
+}
 
 .logo-symbol {
-  display: block;
-
-  font-size: 27px;
-
+  font-size: 23px;
   line-height: 1;
-
-  transform:
-    rotate(45deg)
-    scaleY(1.08);
-
+  color: #bceeff;
   text-shadow:
-    0 0 12px rgba(185, 220, 240, 0.45);
+    0 0 8px rgba(115, 220, 255, 0.6),
+    0 0 18px rgba(75, 190, 240, 0.25);
 }
 
-
-.machine-logo:active {
-  transform: scale(0.94);
-}
-
-
-/* =========================================================
-   CONFIGURAÇÕES
-   ========================================================= */
-
-.top-button {
-  width: 50px;
-  height: 50px;
-
-  border: 1px solid rgba(190, 210, 225, 0.12);
-
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.035);
-
-  color: rgba(225, 235, 242, 0.72);
-
+.top-button span {
   font-size: 22px;
-
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease;
+  line-height: 1;
 }
-
-
-.top-button:active {
-  transform: scale(0.93);
-}
-
 
 /* =========================================================
-   ÁREA CENTRAL
+   ÁREA DA MÁQUINA
    ========================================================= */
 
 .machine-stage {
@@ -229,21 +182,24 @@ body {
   top: 50%;
 
   width: min(82vw, 390px);
-  height: min(65vh, 470px);
+  height: min(62vh, 440px);
 
   transform: translate(-50%, -50%);
 
   display: flex;
-
   align-items: center;
   justify-content: center;
+
+  z-index: 2;
 }
 
+/*
+   CAMPO DE LUZ FUTURISTA
 
-/* =========================================================
-   NOVA ATMOSFERA CIRCULAR
-   AO REDOR DA MÁQUINA
-   ========================================================= */
+   Não é um círculo visível.
+   É uma luz difusa, tecnológica, que parece sair
+   de dentro da própria área da Máquina.
+*/
 
 .machine-ambient {
   position: absolute;
@@ -251,55 +207,96 @@ body {
   left: 50%;
   top: 50%;
 
-  width: 330px;
-  height: 330px;
+  width: 360px;
+  height: 300px;
 
   transform: translate(-50%, -50%);
 
-  border-radius: 50%;
+  pointer-events: none;
+  z-index: -2;
 
   background:
     radial-gradient(
-      circle,
-      rgba(86, 157, 194, 0.075) 0%,
-      rgba(86, 157, 194, 0.045) 25%,
-      rgba(86, 157, 194, 0.018) 48%,
-      transparent 70%
+      ellipse at center,
+      rgba(205, 243, 255, 0.17) 0%,
+      rgba(130, 215, 246, 0.105) 16%,
+      rgba(68, 163, 207, 0.06) 32%,
+      rgba(40, 111, 155, 0.03) 50%,
+      transparent 72%
     );
 
-  box-shadow:
-    0 0 45px rgba(80, 155, 195, 0.035),
-    0 0 90px rgba(80, 155, 195, 0.025);
+  filter:
+    blur(3px)
+    drop-shadow(0 0 30px rgba(113, 214, 255, 0.18));
 
-  pointer-events: none;
+  opacity: 0.9;
 
-  z-index: -1;
-
-  animation:
-    ambient-breathe 8s ease-in-out infinite;
+  animation: machine-field 7s ease-in-out infinite;
 }
 
-
-@keyframes ambient-breathe {
-
+@keyframes machine-field {
   0%,
   100% {
-    transform:
-      translate(-50%, -50%)
-      scale(0.96);
-
-    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.94);
+    opacity: 0.62;
   }
 
   50% {
-    transform:
-      translate(-50%, -50%)
-      scale(1.04);
-
-    opacity: 0.82;
+    transform: translate(-50%, -50%) scale(1.06);
+    opacity: 1;
   }
 }
 
+/*
+   Segunda camada:
+   luz horizontal muito suave, dando sensação
+   de tecnologia / campo energético.
+*/
+
+.machine-stage::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 310px;
+  height: 190px;
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(72, 174, 222, 0.025) 18%,
+      rgba(166, 232, 255, 0.075) 50%,
+      rgba(72, 174, 222, 0.025) 82%,
+      transparent 100%
+    );
+
+  filter: blur(24px);
+
+  opacity: 0.75;
+
+  animation: technology-field 9s ease-in-out infinite;
+}
+
+@keyframes technology-field {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scaleX(0.92);
+    opacity: 0.42;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scaleX(1.08);
+    opacity: 0.82;
+  }
+}
 
 /* =========================================================
    PRESENÇA DA MÁQUINA
@@ -312,15 +309,13 @@ body {
   height: 300px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
+
+  z-index: 3;
 }
 
-
-/* =========================================================
-   CORPO ABSTRATO DA MÁQUINA
-   ========================================================= */
+/* Corpo abstrato — não é círculo */
 
 .machine-body {
   position: relative;
@@ -328,19 +323,30 @@ body {
   width: 145px;
   height: 235px;
 
-  transform:
-    perspective(500px)
-    rotateX(3deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   filter:
-    drop-shadow(
-      0 0 30px rgba(87, 143, 175, 0.09)
-    );
+    drop-shadow(0 0 18px rgba(79, 184, 225, 0.08))
+    drop-shadow(0 18px 25px rgba(0, 0, 0, 0.42));
+
+  animation: machine-breathe 8s ease-in-out infinite;
 }
 
+@keyframes machine-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-3px) scale(1.008);
+  }
+}
 
 /* =========================================================
-   FRAGMENTOS
+   FRAGMENTOS DA ESTRUTURA
    ========================================================= */
 
 .fragment {
@@ -351,204 +357,180 @@ body {
   background:
     linear-gradient(
       145deg,
-      rgba(154, 183, 201, 0.30),
-      rgba(69, 98, 117, 0.08)
+      rgba(54, 76, 89, 0.82),
+      rgba(9, 17, 24, 0.95)
     );
 
-  border: 1px solid rgba(175, 203, 219, 0.12);
+  border: 1px solid rgba(148, 206, 226, 0.16);
 
   box-shadow:
-    inset 0 0 18px rgba(180, 210, 225, 0.035),
-    0 0 18px rgba(100, 150, 175, 0.025);
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    inset 0 -8px 20px rgba(0, 0, 0, 0.28),
+    0 0 14px rgba(66, 170, 215, 0.035);
 
-  opacity: 0.72;
+  opacity: 0.9;
+
+  animation:
+    fragment-breathe 9s ease-in-out infinite;
 }
-
-
-/* Fragmento superior */
 
 .fragment-1 {
-  width: 55px;
-  height: 72px;
-
-  top: 0;
-  left: 47px;
-
-  clip-path: polygon(
-    25% 0,
-    100% 20%,
-    76% 100%,
-    0 78%
-  );
-
-  transform: rotate(7deg);
-}
-
-
-/* Lado esquerdo */
-
-.fragment-2 {
-  width: 42px;
-  height: 118px;
-
-  top: 53px;
-  left: 11px;
-
-  clip-path: polygon(
-    0 12%,
-    75% 0,
-    100% 85%,
-    22% 100%
-  );
-
-  transform: rotate(-7deg);
-}
-
-
-/* Lado direito */
-
-.fragment-3 {
-  width: 48px;
-  height: 126px;
-
-  top: 43px;
-  right: 7px;
-
-  clip-path: polygon(
-    20% 0,
-    100% 13%,
-    77% 100%,
-    0 83%
-  );
-
-  transform: rotate(8deg);
-}
-
-
-/* Parte inferior esquerda */
-
-.fragment-4 {
   width: 58px;
-  height: 91px;
-
-  bottom: 7px;
-  left: 22px;
-
+  height: 112px;
+  left: 5px;
+  top: 32px;
   clip-path: polygon(
     18% 0,
-    100% 18%,
-    71% 100%,
-    0 73%
+    100% 12%,
+    82% 87%,
+    42% 100%,
+    0 75%,
+    8% 22%
   );
-
-  transform: rotate(-5deg);
 }
 
+.fragment-2 {
+  width: 54px;
+  height: 138px;
+  right: 3px;
+  top: 17px;
+  clip-path: polygon(
+    22% 7%,
+    86% 0,
+    100% 75%,
+    60% 100%,
+    0 86%,
+    13% 28%
+  );
+}
 
-/* Parte inferior direita */
+.fragment-3 {
+  width: 92px;
+  height: 54px;
+  left: 26px;
+  top: 8px;
+  clip-path: polygon(
+    8% 20%,
+    75% 0,
+    100% 45%,
+    78% 100%,
+    18% 82%,
+    0 46%
+  );
+}
+
+.fragment-4 {
+  width: 104px;
+  height: 50px;
+  left: 19px;
+  bottom: 12px;
+  clip-path: polygon(
+    0 35%,
+    28% 0,
+    100% 15%,
+    88% 72%,
+    50% 100%,
+    12% 82%
+  );
+}
 
 .fragment-5 {
-  width: 61px;
-  height: 83px;
-
-  bottom: 2px;
-  right: 20px;
-
+  width: 40px;
+  height: 84px;
+  left: 27px;
+  top: 101px;
+  opacity: 0.72;
   clip-path: polygon(
-    0 18%,
-    77% 0,
-    100% 76%,
-    24% 100%
+    0 12%,
+    70% 0,
+    100% 72%,
+    44% 100%,
+    8% 72%
   );
-
-  transform: rotate(5deg);
 }
-
-
-/* Fragmento fantasma */
 
 .fragment-6 {
-  width: 35px;
-  height: 145px;
-
-  left: 54px;
-  top: 44px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(180, 215, 230, 0.05),
-      rgba(180, 215, 230, 0)
-    );
-
-  border: 0;
-
-  filter: blur(2px);
-
-  opacity: 0.45;
-
-  transform: rotate(2deg);
+  width: 38px;
+  height: 72px;
+  right: 25px;
+  top: 112px;
+  opacity: 0.68;
+  clip-path: polygon(
+    25% 0,
+    100% 18%,
+    80% 100%,
+    0 78%
+  );
 }
 
+@keyframes fragment-breathe {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  35% {
+    transform: translate3d(1px, -1px, 0);
+  }
+
+  68% {
+    transform: translate3d(-1px, 1px, 0);
+  }
+}
 
 /* =========================================================
-   PROFUNDIDADE INTERNA
+   PROFUNDIDADE
    ========================================================= */
 
 .machine-depth {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
+  position: relative;
 
   width: 105px;
   height: 165px;
 
-  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  clip-path: polygon(
+    19% 7%,
+    78% 0,
+    100% 28%,
+    87% 91%,
+    55% 100%,
+    8% 81%,
+    0 34%
+  );
 
   background:
     radial-gradient(
       ellipse at center,
-      rgba(1, 5, 9, 0.95) 0%,
-      rgba(4, 9, 14, 0.80) 52%,
-      rgba(8, 14, 20, 0.10) 100%
+      rgba(34, 74, 91, 0.92) 0%,
+      rgba(8, 19, 28, 0.96) 45%,
+      rgba(3, 8, 13, 1) 100%
     );
 
-  clip-path: polygon(
-    50% 0,
-    93% 22%,
-    78% 82%,
-    50% 100%,
-    20% 82%,
-    7% 22%
-  );
-
   box-shadow:
-    inset 0 0 35px rgba(0, 0, 0, 0.9);
+    inset 0 0 35px rgba(85, 197, 235, 0.08),
+    0 0 22px rgba(50, 158, 205, 0.04);
+
+  z-index: 5;
 }
 
-
 /* =========================================================
-   CENTRO
+   NÚCLEO
    ========================================================= */
 
 .core-presence {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
+  position: relative;
 
   width: 70px;
   height: 35px;
 
-  transform: translate(-50%, -50%);
-
   display: flex;
-
   align-items: center;
   justify-content: center;
 }
-
 
 /* =========================================================
    PEQUENO TRAÇO DE LUZ
@@ -566,29 +548,54 @@ body {
     linear-gradient(
       90deg,
       transparent,
-      rgba(137, 202, 232, 0.45) 22%,
-      rgba(225, 247, 255, 0.95) 50%,
-      rgba(137, 202, 232, 0.45) 78%,
+      rgba(145, 228, 255, 0.48) 24%,
+      rgba(238, 252, 255, 0.96) 50%,
+      rgba(145, 228, 255, 0.48) 76%,
       transparent
     );
 
   box-shadow:
-    0 0 7px rgba(132, 204, 238, 0.45),
-    0 0 18px rgba(93, 176, 218, 0.20);
+    0 0 5px rgba(148, 228, 255, 0.5),
+    0 0 13px rgba(86, 202, 245, 0.32),
+    0 0 25px rgba(66, 178, 225, 0.14);
 
-  opacity: 0.75;
+  opacity: 0.72;
 
   transition:
-    width 0.12s ease,
-    height 0.12s ease,
-    opacity 0.25s ease,
-    box-shadow 0.2s ease;
+    width 0.16s ease,
+    height 0.16s ease,
+    opacity 0.16s ease,
+    filter 0.16s ease;
 }
 
+/* Quando a Máquina fala */
+
+.voice-light.speaking {
+  width: 54px;
+  height: 4px;
+
+  opacity: 1;
+
+  filter:
+    brightness(1.25)
+    drop-shadow(0 0 7px rgba(170, 239, 255, 0.7));
+
+  animation: voice-presence 0.9s ease-in-out infinite;
+}
+
+@keyframes voice-presence {
+  0%,
+  100% {
+    transform: scaleX(0.88);
+  }
+
+  50% {
+    transform: scaleX(1.06);
+  }
+}
 
 /* =========================================================
-   PONTO DE OBSERVAÇÃO
-   EXATAMENTE NO CENTRO DO TRAÇO
+   PONTO CENTRAL — SENSAÇÃO DE OBSERVAÇÃO
    ========================================================= */
 
 .observation-point {
@@ -604,82 +611,28 @@ body {
 
   border-radius: 50%;
 
-  background: #ffffff;
+  background: #f2fcff;
 
   box-shadow:
-    0 0 5px rgba(255, 255, 255, 0.95),
-    0 0 13px rgba(166, 225, 255, 0.8),
-    0 0 25px rgba(105, 191, 235, 0.38);
+    0 0 4px rgba(255, 255, 255, 0.95),
+    0 0 10px rgba(126, 221, 255, 0.9),
+    0 0 19px rgba(76, 190, 235, 0.55);
 
-  animation:
-    observation-pulse 3.8s ease-in-out infinite;
+  animation: observation 4s ease-in-out infinite;
 }
 
-
-@keyframes observation-pulse {
-
+@keyframes observation {
   0%,
   100% {
-    opacity: 0.72;
-
-    transform:
-      translate(-50%, -50%)
-      scale(0.82);
+    opacity: 0.65;
+    transform: translate(-50%, -50%) scale(0.88);
   }
 
   50% {
     opacity: 1;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1.12);
+    transform: translate(-50%, -50%) scale(1.12);
   }
 }
-
-
-/* =========================================================
-   VIDA SUTIL DA ESTRUTURA
-   ========================================================= */
-
-.fragment-1,
-.fragment-2,
-.fragment-3,
-.fragment-4,
-.fragment-5 {
-  animation:
-    machine-breathe 7s ease-in-out infinite;
-}
-
-
-.fragment-2 {
-  animation-delay: -1.2s;
-}
-
-.fragment-3 {
-  animation-delay: -2.5s;
-}
-
-.fragment-4 {
-  animation-delay: -3.4s;
-}
-
-.fragment-5 {
-  animation-delay: -4.7s;
-}
-
-
-@keyframes machine-breathe {
-
-  0%,
-  100% {
-    opacity: 0.58;
-  }
-
-  50% {
-    opacity: 0.78;
-  }
-}
-
 
 /* =========================================================
    CONTROLOS INFERIORES
@@ -687,8 +640,6 @@ body {
 
 .machine-controls {
   position: absolute;
-
-  z-index: 20;
 
   left: 0;
   bottom: 0;
@@ -698,74 +649,93 @@ body {
   padding:
     0
     22px
-    24px
+    22px
     22px;
 
   display: flex;
-
   align-items: center;
   justify-content: space-between;
+
+  z-index: 30;
+
+  pointer-events: none;
 }
 
-
-/* =========================================================
-   BOTÕES
-   ========================================================= */
-
 .control-button {
+  position: relative;
+
   width: 62px;
   height: 62px;
 
   flex: 0 0 62px;
 
-  border: 1px solid rgba(194, 216, 229, 0.15);
-
-  border-radius: 17px;
+  border: 1px solid rgba(155, 222, 247, 0.28);
+  border-radius: 18px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(255, 255, 255, 0.075),
-      rgba(255, 255, 255, 0.018)
+      rgba(28, 46, 59, 0.95),
+      rgba(7, 13, 19, 0.98)
     );
 
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 10px 30px rgba(0, 0, 0, 0.32);
-
-  color: rgba(226, 239, 247, 0.82);
-
-  cursor: pointer;
+  color: #e7f9ff;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  cursor: pointer;
+
+  pointer-events: auto;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -10px 18px rgba(0, 0, 0, 0.22),
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    0 0 18px rgba(76, 187, 230, 0.08);
+
   transition:
-    transform 0.18s ease,
-    background 0.18s ease;
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+.control-button:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(157, 230, 255, 0.55);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 10px 28px rgba(0, 0, 0, 0.46),
+    0 0 25px rgba(86, 198, 240, 0.15);
+}
 
 .control-button:active {
-  transform: scale(0.92);
+  transform: scale(0.93);
 }
-
 
 /* =========================================================
    MICROFONE
    ========================================================= */
 
 .control-icon {
-  font-size: 34px;
+  width: 25px;
+  height: 25px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
   line-height: 1;
 
-  transform: rotate(-90deg);
+  color: #c8f1ff;
 
-  opacity: 0.85;
+  text-shadow:
+    0 0 8px rgba(105, 211, 250, 0.55);
 }
-
 
 /* =========================================================
    TECLADO
@@ -773,114 +743,105 @@ body {
 
 .keyboard-icon {
   width: 29px;
-  height: 22px;
+  height: 21px;
 
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 
-  gap: 4px;
+  gap: 3px;
 
-  padding: 4px;
+  padding: 3px;
 
-  border: 1px solid rgba(220, 235, 243, 0.45);
-
+  border: 1px solid rgba(180, 230, 246, 0.55);
   border-radius: 5px;
-}
 
+  background: rgba(10, 21, 29, 0.75);
+
+  box-shadow:
+    0 0 8px rgba(91, 198, 237, 0.14);
+}
 
 .keyboard-icon i {
   display: block;
 
-  width: 100%;
-  height: 4px;
+  min-width: 0;
+  min-height: 0;
 
   border-radius: 1px;
 
-  background: rgba(220, 235, 243, 0.55);
+  background: rgba(201, 239, 250, 0.75);
 }
 
-
 /* =========================================================
-   MODO FALA
-   ========================================================= */
-
-.voice-light.speaking {
-  width: 54px;
-  height: 4px;
-
-  opacity: 1;
-
-  box-shadow:
-    0 0 9px rgba(140, 215, 245, 0.75),
-    0 0 22px rgba(93, 187, 230, 0.45),
-    0 0 42px rgba(74, 157, 204, 0.18);
-}
-
-
-/* =========================================================
-   TELEFONES PEQUENOS
+   TELAS PEQUENAS
    ========================================================= */
 
 @media (max-height: 620px) {
 
+  .top-bar {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .machine-logo,
+  .top-button {
+    width: 43px;
+    height: 43px;
+  }
+
   .machine-stage {
-    transform:
-      translate(-50%, -50%)
-      scale(0.82);
+    height: 55vh;
+  }
+
+  .machine-presence {
+    transform: scale(0.82);
   }
 
   .machine-controls {
-    padding-bottom: 14px;
+    padding:
+      0
+      18px
+      14px
+      18px;
   }
 
   .control-button {
     width: 56px;
     height: 56px;
-
     flex-basis: 56px;
+    border-radius: 16px;
   }
 }
 
+/* =========================================================
+   TELAS MUITO ESTREITAS
+   ========================================================= */
 
 @media (max-width: 350px) {
 
-  .machine-stage {
-    transform:
-      translate(-50%, -50%)
-      scale(0.86);
+  .machine-controls {
+    padding-left: 14px;
+    padding-right: 14px;
   }
 
   .control-button {
-    width: 55px;
-    height: 55px;
-
-    flex-basis: 55px;
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
   }
 
-  .machine-logo {
-    width: 48px;
-    height: 48px;
-  }
-
-  .top-button {
-    width: 46px;
-    height: 46px;
+  .machine-presence {
+    transform: scale(0.78);
   }
 }
-
 
 /* =========================================================
    ACESSIBILIDADE
    ========================================================= */
 
-button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-
 button:focus-visible {
-  outline: 2px solid rgba(180, 225, 245, 0.65);
-
+  outline: 2px solid rgba(170, 232, 255, 0.85);
   outline-offset: 3px;
 }
