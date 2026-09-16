@@ -2,80 +2,80 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#080b10">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  >
-
-  <meta
-    name="description"
-    content="Homem e a Máquina — Máquina Principal"
-  >
-
-  <title>Homem e a Máquina — Máquina</title>
+  <title>Homem e a Máquina</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <main id="machine-app" class="machine-app">
+  <main class="machine-screen">
 
-    <!-- ==============================
-         LOGO DA MÁQUINA
-         ============================== -->
+    <!-- TOPO -->
+    <header class="top-bar">
 
-    <button
-      id="machine-logo"
-      class="machine-logo"
-      type="button"
-      aria-label="Abrir apresentação da Máquina"
-    >
-      <span class="logo-symbol" aria-hidden="true">
-        ◇
-      </span>
-    </button>
+      <!-- Logo própria da Máquina -->
+      <button
+        class="machine-logo"
+        id="machine-logo"
+        type="button"
+        aria-label="Abrir apresentação da Máquina"
+      >
+        <span class="logo-symbol">
+          ◈
+        </span>
+      </button>
 
+      <!-- Configurações -->
+      <button
+        class="top-button"
+        id="settings-button"
+        type="button"
+        aria-label="Abrir configurações"
+      >
+        <span>⚙</span>
+      </button>
 
-    <!-- ==============================
-         DEFINIÇÕES
-         ============================== -->
-
-    <button
-      id="settings-button"
-      class="machine-control settings-button"
-      type="button"
-      aria-label="Abrir definições"
-    >
-      <span aria-hidden="true">⚙</span>
-    </button>
+    </header>
 
 
-    <!-- ==============================
-         ÁREA CENTRAL DA MÁQUINA
-         ============================== -->
+    <!-- CENTRO -->
+    <section class="machine-stage" aria-label="Máquina">
 
-    <section
-      id="machine-core-area"
-      class="machine-core-area"
-      aria-label="Máquina"
-    >
+      <!-- Presença visual da Máquina -->
+      <div class="machine-presence">
 
-      <div class="machine-structure">
+        <!-- Estrutura abstrata -->
+        <div class="machine-body">
 
-        <div class="structure-layer structure-layer-one"></div>
-        <div class="structure-layer structure-layer-two"></div>
-        <div class="structure-layer structure-layer-three"></div>
+          <span class="fragment fragment-1"></span>
+          <span class="fragment fragment-2"></span>
+          <span class="fragment fragment-3"></span>
+          <span class="fragment fragment-4"></span>
+          <span class="fragment fragment-5"></span>
+          <span class="fragment fragment-6"></span>
 
-        <div
-          id="machine-core"
-          class="machine-core"
-          aria-hidden="true"
-        >
-          <div class="core-depth"></div>
-          <div class="core-light"></div>
-          <div class="core-point"></div>
+          <!-- Profundidade interna -->
+          <div class="machine-depth">
+
+            <!-- DETALHE CENTRAL -->
+            <div class="core-presence">
+
+              <!-- Pequeno traço luminoso -->
+              <div class="voice-light" id="voice-light">
+
+                <!-- Ponto de observação -->
+                <span class="observation-point"></span>
+
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -83,58 +83,38 @@
     </section>
 
 
-    <!-- ==============================
-         CONTROLES INFERIORES
-         ============================== -->
+    <!-- CONTROLOS -->
+    <nav class="machine-controls" aria-label="Controles da Máquina">
 
-    <nav
-      class="machine-controls"
-      aria-label="Interações com a Máquina"
-    >
-
-      <!-- MICROFONE -->
-
+      <!-- Microfone -->
       <button
+        class="control-button microphone-button"
         id="microphone-button"
-        class="machine-control microphone-button"
         type="button"
         aria-label="Falar com a Máquina"
-        aria-pressed="false"
       >
-        <span aria-hidden="true">🎙</span>
+        <span class="control-icon">⌁</span>
       </button>
 
-
-      <!-- TECLADO -->
-
+      <!-- Teclado -->
       <button
+        class="control-button keyboard-button"
         id="keyboard-button"
-        class="machine-control keyboard-button"
         type="button"
-        aria-label="Conversar com a Máquina por mensagem"
+        aria-label="Conversar por mensagem"
       >
-        <span aria-hidden="true">⌨</span>
+        <span class="keyboard-icon">
+          <i></i><i></i><i></i>
+          <i></i><i></i><i></i>
+          <i></i><i></i><i></i>
+        </span>
       </button>
 
     </nav>
-
-
-    <!-- ==============================
-         ÁREA DE NAVEGAÇÃO
-         As telas secundárias serão
-         adicionadas posteriormente.
-         ============================== -->
-
-    <div
-      id="machine-navigation"
-      class="machine-navigation"
-      aria-live="polite"
-    ></div>
 
   </main>
 
   <script src="app.js"></script>
 
 </body>
-</html>
-
+  </html>
