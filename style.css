@@ -3,21 +3,28 @@
    GRUPO 2 — MÁQUINA PRINCIPAL
    ========================================================= */
 
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+
 html,
 body {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
 
+
 body {
-  min-height: 100vh;
-  min-height: 100svh;
+  width: 100%;
+  height: 100vh;
 
   overflow: hidden;
 
@@ -40,7 +47,7 @@ body {
 
 
 /* =========================================================
-   TELA
+   TELA PRINCIPAL
    ========================================================= */
 
 .machine-screen {
@@ -48,9 +55,6 @@ body {
 
   width: 100%;
   height: 100vh;
-  height: 100svh;
-
-  min-height: 500px;
 
   overflow: hidden;
 
@@ -58,7 +62,9 @@ body {
 }
 
 
-/* Luz ambiente muito discreta */
+/* =========================================================
+   LUZ AMBIENTE GERAL
+   ========================================================= */
 
 .machine-screen::before {
   content: "";
@@ -78,7 +84,12 @@ body {
 
   border-radius: 50%;
 
-  background: rgba(78, 123, 157, 0.055);
+  background:
+    radial-gradient(
+      circle,
+      rgba(78, 123, 157, 0.055),
+      transparent 70%
+    );
 
   filter: blur(80px);
 
@@ -87,7 +98,7 @@ body {
 
 
 /* =========================================================
-   TOPO
+   BARRA SUPERIOR
    ========================================================= */
 
 .top-bar {
@@ -101,15 +112,15 @@ body {
   width: 100%;
 
   padding:
-    max(18px, env(safe-area-inset-top))
-    max(18px, env(safe-area-inset-right))
+    18px
+    18px
     0
-    max(18px, env(safe-area-inset-left));
+    18px;
 
   display: flex;
 
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 
@@ -150,8 +161,6 @@ body {
     box-shadow 0.25s ease;
 }
 
-
-/* Símbolo próprio da Máquina */
 
 .logo-symbol {
   display: block;
@@ -203,13 +212,14 @@ body {
     background 0.25s ease;
 }
 
+
 .top-button:active {
   transform: scale(0.93);
 }
 
 
 /* =========================================================
-   ÁREA DA MÁQUINA
+   ÁREA CENTRAL
    ========================================================= */
 
 .machine-stage {
@@ -231,6 +241,67 @@ body {
 
 
 /* =========================================================
+   NOVA ATMOSFERA CIRCULAR
+   AO REDOR DA MÁQUINA
+   ========================================================= */
+
+.machine-ambient {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 330px;
+  height: 330px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(86, 157, 194, 0.075) 0%,
+      rgba(86, 157, 194, 0.045) 25%,
+      rgba(86, 157, 194, 0.018) 48%,
+      transparent 70%
+    );
+
+  box-shadow:
+    0 0 45px rgba(80, 155, 195, 0.035),
+    0 0 90px rgba(80, 155, 195, 0.025);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  animation:
+    ambient-breathe 8s ease-in-out infinite;
+}
+
+
+@keyframes ambient-breathe {
+
+  0%,
+  100% {
+    transform:
+      translate(-50%, -50%)
+      scale(0.96);
+
+    opacity: 0.55;
+  }
+
+  50% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.04);
+
+    opacity: 0.82;
+  }
+}
+
+
+/* =========================================================
    PRESENÇA DA MÁQUINA
    ========================================================= */
 
@@ -248,9 +319,7 @@ body {
 
 
 /* =========================================================
-   CORPO ABSTRATO
-   NÃO É CÍRCULO
-   NÃO TEM ANÉIS
+   CORPO ABSTRATO DA MÁQUINA
    ========================================================= */
 
 .machine-body {
@@ -270,7 +339,9 @@ body {
 }
 
 
-/* Fragmentos que formam a presença */
+/* =========================================================
+   FRAGMENTOS
+   ========================================================= */
 
 .fragment {
   position: absolute;
@@ -458,7 +529,7 @@ body {
 
 
 /* =========================================================
-   CENTRO / PRESENÇA
+   CENTRO
    ========================================================= */
 
 .core-presence {
@@ -545,8 +616,6 @@ body {
 }
 
 
-/* Sensação de presença */
-
 @keyframes observation-pulse {
 
   0%,
@@ -569,7 +638,7 @@ body {
 
 
 /* =========================================================
-   PEQUENA VIDA NA ESTRUTURA
+   VIDA SUTIL DA ESTRUTURA
    ========================================================= */
 
 .fragment-1,
@@ -628,9 +697,9 @@ body {
 
   padding:
     0
-    max(22px, env(safe-area-inset-right))
-    max(24px, env(safe-area-inset-bottom))
-    max(22px, env(safe-area-inset-left));
+    22px
+    24px
+    22px;
 
   display: flex;
 
@@ -734,7 +803,6 @@ body {
 
 /* =========================================================
    MODO FALA
-   O JS poderá adicionar .speaking
    ========================================================= */
 
 .voice-light.speaking {
@@ -751,7 +819,7 @@ body {
 
 
 /* =========================================================
-   TELAS PEQUENAS
+   TELEFONES PEQUENOS
    ========================================================= */
 
 @media (max-height: 620px) {
@@ -763,8 +831,7 @@ body {
   }
 
   .machine-controls {
-    padding-bottom:
-      max(14px, env(safe-area-inset-bottom));
+    padding-bottom: 14px;
   }
 
   .control-button {
@@ -811,7 +878,9 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+
 button:focus-visible {
   outline: 2px solid rgba(180, 225, 245, 0.65);
+
   outline-offset: 3px;
-   }
+}
