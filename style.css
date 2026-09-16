@@ -1,12 +1,6 @@
 /* =========================================================
    HOMEM E A MÁQUINA
    GRUPO 2 — MÁQUINA PRINCIPAL
-   CSS BASE
-   ========================================================= */
-
-
-/* =========================================================
-   1. RESET
    ========================================================= */
 
 * {
@@ -22,146 +16,133 @@ body {
 }
 
 body {
+  min-height: 100vh;
+  min-height: 100svh;
+
   overflow: hidden;
-  background: #11151a;
-  color: #eef2f5;
-  font-family: Arial, Helvetica, sans-serif;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      #111a25 0%,
+      #0b1017 38%,
+      #070a0f 72%,
+      #05070a 100%
+    );
+
+  color: #eef3f8;
 }
 
 
 /* =========================================================
-   2. APLICAÇÃO
+   TELA
    ========================================================= */
 
-.machine-app {
+.machine-screen {
   position: relative;
 
   width: 100%;
   height: 100vh;
-  min-height: 420px;
+  height: 100svh;
+
+  min-height: 500px;
 
   overflow: hidden;
 
-  background:
-    radial-gradient(
-      circle at 50% 46%,
-      rgba(70, 82, 94, 0.16) 0%,
-      rgba(17, 21, 26, 0.08) 30%,
-      rgba(17, 21, 26, 0) 58%
-    ),
-    #11151a;
+  isolation: isolate;
+}
+
+
+/* Luz ambiente muito discreta */
+
+.machine-screen::before {
+  content: "";
+
+  position: absolute;
+
+  width: 55vw;
+  height: 55vw;
+
+  max-width: 500px;
+  max-height: 500px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: rgba(78, 123, 157, 0.055);
+
+  filter: blur(80px);
+
+  pointer-events: none;
 }
 
 
 /* =========================================================
-   3. LOGO DA MÁQUINA
+   TOPO
+   ========================================================= */
+
+.top-bar {
+  position: absolute;
+
+  z-index: 20;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  padding:
+    max(18px, env(safe-area-inset-top))
+    max(18px, env(safe-area-inset-right))
+    0
+    max(18px, env(safe-area-inset-left));
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* =========================================================
+   LOGO DA MÁQUINA
    ========================================================= */
 
 .machine-logo {
-  position: absolute;
-
-  top: 20px;
-  left: 20px;
-
   width: 54px;
   height: 54px;
 
-  border: 0;
-  border-radius: 50%;
+  border: 1px solid rgba(190, 210, 225, 0.16);
 
-  background: transparent;
-
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  z-index: 20;
-
-  -webkit-tap-highlight-color: transparent;
-}
-
-.logo-symbol {
-  width: 38px;
-  height: 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(220, 230, 238, 0.48);
-
-  transform: rotate(45deg);
-
-  color: rgba(235, 242, 247, 0.9);
-
-  font-size: 20px;
-
-  text-shadow:
-    0 0 8px rgba(210, 225, 238, 0.3);
-
-  box-shadow:
-    0 0 14px rgba(180, 205, 220, 0.08),
-    inset 0 0 12px rgba(180, 205, 220, 0.06);
-
-  transition:
-    transform 0.5s ease,
-    box-shadow 0.5s ease;
-}
-
-.machine-logo:active .logo-symbol {
-  transform: rotate(45deg) scale(0.92);
-}
-
-
-/* =========================================================
-   4. BOTÃO DE DEFINIÇÕES
-   ========================================================= */
-
-.settings-button {
-  position: absolute;
-
-  top: 20px;
-  right: 20px;
-
-  z-index: 20;
-}
-
-
-/* =========================================================
-   5. CONTROLES
-   ========================================================= */
-
-.machine-control {
-  width: 58px;
-  height: 58px;
-
-  border: 1px solid rgba(210, 222, 232, 0.28);
-  border-radius: 50%;
+  border-radius: 15px;
 
   background:
-    radial-gradient(
-      circle,
-      rgba(90, 105, 118, 0.16),
-      rgba(20, 25, 30, 0.55)
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.015)
     );
 
-  color: rgba(235, 242, 247, 0.88);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 8px 30px rgba(0, 0, 0, 0.35);
+
+  color: #dce9f2;
+
+  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-size: 25px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 18px rgba(150, 175, 195, 0.05),
-    inset 0 0 14px rgba(190, 210, 225, 0.04);
-
-  -webkit-tap-highlight-color: transparent;
 
   transition:
     transform 0.25s ease,
@@ -169,441 +150,668 @@ body {
     box-shadow 0.25s ease;
 }
 
-.machine-control:active {
-  transform: scale(0.92);
+
+/* Símbolo próprio da Máquina */
+
+.logo-symbol {
+  display: block;
+
+  font-size: 27px;
+
+  line-height: 1;
+
+  transform:
+    rotate(45deg)
+    scaleY(1.08);
+
+  text-shadow:
+    0 0 12px rgba(185, 220, 240, 0.45);
+}
+
+
+.machine-logo:active {
+  transform: scale(0.94);
 }
 
 
 /* =========================================================
-   6. ÁREA CENTRAL
+   CONFIGURAÇÕES
    ========================================================= */
 
-.machine-core-area {
-  position: absolute;
+.top-button {
+  width: 50px;
+  height: 50px;
 
-  /*
-    Reservamos espaço real para os controles
-    superiores e inferiores.
-  */
+  border: 1px solid rgba(190, 210, 225, 0.12);
 
-  top: 88px;
-  right: 20px;
-  bottom: 108px;
-  left: 20px;
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: rgba(225, 235, 242, 0.72);
+
+  font-size: 22px;
+
+  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  z-index: 5;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.top-button:active {
+  transform: scale(0.93);
 }
 
 
 /* =========================================================
-   7. ESTRUTURA DA MÁQUINA
+   ÁREA DA MÁQUINA
    ========================================================= */
 
-.machine-structure {
-  position: relative;
-
-  width: 190px;
-  height: 230px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-/* =========================================================
-   8. CAMADAS DA ESTRUTURA
-   ========================================================= */
-
-.structure-layer {
+.machine-stage {
   position: absolute;
 
   left: 50%;
   top: 50%;
 
+  width: min(82vw, 390px);
+  height: min(65vh, 470px);
+
   transform: translate(-50%, -50%);
 
-  border: 1px solid rgba(190, 207, 220, 0.15);
-
-  pointer-events: none;
-}
-
-.structure-layer-one {
-  width: 150px;
-  height: 205px;
-
-  border-radius: 48% 52% 45% 55% / 55% 45% 55% 45%;
-
-  transform:
-    translate(-50%, -50%)
-    rotate(-7deg);
-
-  animation: structureDriftOne 11s ease-in-out infinite;
-}
-
-.structure-layer-two {
-  width: 125px;
-  height: 185px;
-
-  border-radius: 52% 48% 57% 43% / 44% 56% 44% 56%;
-
-  transform:
-    translate(-50%, -50%)
-    rotate(13deg);
-
-  border-color: rgba(205, 220, 230, 0.11);
-
-  animation: structureDriftTwo 14s ease-in-out infinite;
-}
-
-.structure-layer-three {
-  width: 92px;
-  height: 160px;
-
-  border-radius: 45% 55% 48% 52% / 58% 42% 58% 42%;
-
-  transform:
-    translate(-50%, -50%)
-    rotate(-18deg);
-
-  border-color: rgba(220, 230, 238, 0.09);
-
-  animation: structureDriftThree 17s ease-in-out infinite;
-}
-
-
-/* =========================================================
-   9. NÚCLEO
-   ========================================================= */
-
-.machine-core {
-  position: relative;
-
-  width: 74px;
-  height: 74px;
-
-  border-radius: 50%;
-
   display: flex;
+
   align-items: center;
   justify-content: center;
-
-  z-index: 10;
-
-  background:
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(220, 235, 245, 0.16) 0%,
-      rgba(105, 125, 140, 0.08) 24%,
-      rgba(30, 38, 44, 0.34) 58%,
-      rgba(10, 14, 18, 0.72) 100%
-    );
-
-  border: 1px solid rgba(215, 228, 238, 0.22);
-
-  box-shadow:
-    0 0 22px rgba(180, 205, 220, 0.08),
-    inset 0 0 22px rgba(210, 225, 235, 0.06);
-
-  animation: coreRest 5s ease-in-out infinite;
 }
 
 
 /* =========================================================
-   10. PROFUNDIDADE DO NÚCLEO
+   PRESENÇA DA MÁQUINA
    ========================================================= */
 
-.core-depth {
+.machine-presence {
+  position: relative;
+
+  width: 210px;
+  height: 300px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================================
+   CORPO ABSTRATO
+   NÃO É CÍRCULO
+   NÃO TEM ANÉIS
+   ========================================================= */
+
+.machine-body {
+  position: relative;
+
+  width: 145px;
+  height: 235px;
+
+  transform:
+    perspective(500px)
+    rotateX(3deg);
+
+  filter:
+    drop-shadow(
+      0 0 30px rgba(87, 143, 175, 0.09)
+    );
+}
+
+
+/* Fragmentos que formam a presença */
+
+.fragment {
   position: absolute;
 
+  display: block;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(154, 183, 201, 0.30),
+      rgba(69, 98, 117, 0.08)
+    );
+
+  border: 1px solid rgba(175, 203, 219, 0.12);
+
+  box-shadow:
+    inset 0 0 18px rgba(180, 210, 225, 0.035),
+    0 0 18px rgba(100, 150, 175, 0.025);
+
+  opacity: 0.72;
+}
+
+
+/* Fragmento superior */
+
+.fragment-1 {
+  width: 55px;
+  height: 72px;
+
+  top: 0;
+  left: 47px;
+
+  clip-path: polygon(
+    25% 0,
+    100% 20%,
+    76% 100%,
+    0 78%
+  );
+
+  transform: rotate(7deg);
+}
+
+
+/* Lado esquerdo */
+
+.fragment-2 {
+  width: 42px;
+  height: 118px;
+
+  top: 53px;
+  left: 11px;
+
+  clip-path: polygon(
+    0 12%,
+    75% 0,
+    100% 85%,
+    22% 100%
+  );
+
+  transform: rotate(-7deg);
+}
+
+
+/* Lado direito */
+
+.fragment-3 {
+  width: 48px;
+  height: 126px;
+
+  top: 43px;
+  right: 7px;
+
+  clip-path: polygon(
+    20% 0,
+    100% 13%,
+    77% 100%,
+    0 83%
+  );
+
+  transform: rotate(8deg);
+}
+
+
+/* Parte inferior esquerda */
+
+.fragment-4 {
   width: 58px;
-  height: 58px;
+  height: 91px;
 
-  border-radius: 50%;
+  bottom: 7px;
+  left: 22px;
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(180, 205, 220, 0.06) 0%,
-      rgba(15, 20, 24, 0.45) 52%,
-      rgba(5, 8, 11, 0.78) 100%
-    );
+  clip-path: polygon(
+    18% 0,
+    100% 18%,
+    71% 100%,
+    0 73%
+  );
 
-  box-shadow:
-    inset 0 0 20px rgba(0, 0, 0, 0.75);
+  transform: rotate(-5deg);
 }
 
 
-/* =========================================================
-   11. LUZ INTERNA
-   ========================================================= */
+/* Parte inferior direita */
 
-.core-light {
-  position: absolute;
+.fragment-5 {
+  width: 61px;
+  height: 83px;
 
-  width: 30px;
-  height: 30px;
+  bottom: 2px;
+  right: 20px;
 
-  border-radius: 50%;
+  clip-path: polygon(
+    0 18%,
+    77% 0,
+    100% 76%,
+    24% 100%
+  );
+
+  transform: rotate(5deg);
+}
+
+
+/* Fragmento fantasma */
+
+.fragment-6 {
+  width: 35px;
+  height: 145px;
+
+  left: 54px;
+  top: 44px;
 
   background:
-    radial-gradient(
-      circle,
-      rgba(235, 244, 250, 0.24) 0%,
-      rgba(185, 210, 225, 0.08) 38%,
-      rgba(130, 160, 180, 0) 72%
+    linear-gradient(
+      180deg,
+      rgba(180, 215, 230, 0.05),
+      rgba(180, 215, 230, 0)
     );
+
+  border: 0;
 
   filter: blur(2px);
 
-  animation: innerLight 4s ease-in-out infinite;
+  opacity: 0.45;
+
+  transform: rotate(2deg);
 }
 
 
 /* =========================================================
-   12. PONTO CENTRAL
+   PROFUNDIDADE INTERNA
    ========================================================= */
 
-.core-point {
+.machine-depth {
   position: absolute;
 
-  width: 6px;
-  height: 6px;
+  left: 50%;
+  top: 50%;
+
+  width: 105px;
+  height: 165px;
+
+  transform: translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(1, 5, 9, 0.95) 0%,
+      rgba(4, 9, 14, 0.80) 52%,
+      rgba(8, 14, 20, 0.10) 100%
+    );
+
+  clip-path: polygon(
+    50% 0,
+    93% 22%,
+    78% 82%,
+    50% 100%,
+    20% 82%,
+    7% 22%
+  );
+
+  box-shadow:
+    inset 0 0 35px rgba(0, 0, 0, 0.9);
+}
+
+
+/* =========================================================
+   CENTRO / PRESENÇA
+   ========================================================= */
+
+.core-presence {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 70px;
+  height: 35px;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================================
+   PEQUENO TRAÇO DE LUZ
+   ========================================================= */
+
+.voice-light {
+  position: relative;
+
+  width: 42px;
+  height: 3px;
 
   border-radius: 50%;
 
-  background: rgba(245, 249, 252, 0.92);
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(137, 202, 232, 0.45) 22%,
+      rgba(225, 247, 255, 0.95) 50%,
+      rgba(137, 202, 232, 0.45) 78%,
+      transparent
+    );
 
   box-shadow:
-    0 0 8px rgba(230, 240, 248, 0.65),
-    0 0 18px rgba(190, 215, 230, 0.2);
+    0 0 7px rgba(132, 204, 238, 0.45),
+    0 0 18px rgba(93, 176, 218, 0.20);
 
-  animation: pointPulse 3.5s ease-in-out infinite;
+  opacity: 0.75;
+
+  transition:
+    width 0.12s ease,
+    height 0.12s ease,
+    opacity 0.25s ease,
+    box-shadow 0.2s ease;
 }
 
 
 /* =========================================================
-   13. CONTROLES INFERIORES
+   PONTO DE OBSERVAÇÃO
+   EXATAMENTE NO CENTRO DO TRAÇO
+   ========================================================= */
+
+.observation-point {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 5px;
+  height: 5px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.95),
+    0 0 13px rgba(166, 225, 255, 0.8),
+    0 0 25px rgba(105, 191, 235, 0.38);
+
+  animation:
+    observation-pulse 3.8s ease-in-out infinite;
+}
+
+
+/* Sensação de presença */
+
+@keyframes observation-pulse {
+
+  0%,
+  100% {
+    opacity: 0.72;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.82);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.12);
+  }
+}
+
+
+/* =========================================================
+   PEQUENA VIDA NA ESTRUTURA
+   ========================================================= */
+
+.fragment-1,
+.fragment-2,
+.fragment-3,
+.fragment-4,
+.fragment-5 {
+  animation:
+    machine-breathe 7s ease-in-out infinite;
+}
+
+
+.fragment-2 {
+  animation-delay: -1.2s;
+}
+
+.fragment-3 {
+  animation-delay: -2.5s;
+}
+
+.fragment-4 {
+  animation-delay: -3.4s;
+}
+
+.fragment-5 {
+  animation-delay: -4.7s;
+}
+
+
+@keyframes machine-breathe {
+
+  0%,
+  100% {
+    opacity: 0.58;
+  }
+
+  50% {
+    opacity: 0.78;
+  }
+}
+
+
+/* =========================================================
+   CONTROLOS INFERIORES
    ========================================================= */
 
 .machine-controls {
   position: absolute;
 
-  left: 20px;
-  right: 20px;
-  bottom: 22px;
+  z-index: 20;
 
-  height: 64px;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+
+  padding:
+    0
+    max(22px, env(safe-area-inset-right))
+    max(24px, env(safe-area-inset-bottom))
+    max(22px, env(safe-area-inset-left));
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
-
-  z-index: 20;
 }
 
 
 /* =========================================================
-   14. ÍCONES
+   BOTÕES
    ========================================================= */
 
-.machine-control span {
+.control-button {
+  width: 62px;
+  height: 62px;
+
+  flex: 0 0 62px;
+
+  border: 1px solid rgba(194, 216, 229, 0.15);
+
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 30px rgba(0, 0, 0, 0.32);
+
+  color: rgba(226, 239, 247, 0.82);
+
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease;
+}
+
+
+.control-button:active {
+  transform: scale(0.92);
+}
+
+
+/* =========================================================
+   MICROFONE
+   ========================================================= */
+
+.control-icon {
+  font-size: 34px;
+
   line-height: 1;
+
+  transform: rotate(-90deg);
+
+  opacity: 0.85;
 }
 
 
 /* =========================================================
-   15. ANIMAÇÕES — ESTRUTURA
+   TECLADO
    ========================================================= */
 
-@keyframes structureDriftOne {
+.keyboard-icon {
+  width: 29px;
+  height: 22px;
 
-  0%,
-  100% {
-    transform:
-      translate(-50%, -50%)
-      rotate(-7deg)
-      scale(1);
-  }
+  display: grid;
 
-  50% {
-    transform:
-      translate(-50%, -50%)
-      rotate(-4deg)
-      scale(1.025);
-  }
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 4px;
+
+  padding: 4px;
+
+  border: 1px solid rgba(220, 235, 243, 0.45);
+
+  border-radius: 5px;
 }
 
 
-@keyframes structureDriftTwo {
+.keyboard-icon i {
+  display: block;
 
-  0%,
-  100% {
-    transform:
-      translate(-50%, -50%)
-      rotate(13deg)
-      scale(1);
-  }
+  width: 100%;
+  height: 4px;
 
-  50% {
-    transform:
-      translate(-50%, -50%)
-      rotate(17deg)
-      scale(0.98);
-  }
-}
+  border-radius: 1px;
 
-
-@keyframes structureDriftThree {
-
-  0%,
-  100% {
-    transform:
-      translate(-50%, -50%)
-      rotate(-18deg)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translate(-50%, -50%)
-      rotate(-14deg)
-      scale(1.03);
-  }
+  background: rgba(220, 235, 243, 0.55);
 }
 
 
 /* =========================================================
-   16. ANIMAÇÕES — NÚCLEO
+   MODO FALA
+   O JS poderá adicionar .speaking
    ========================================================= */
 
-@keyframes coreRest {
+.voice-light.speaking {
+  width: 54px;
+  height: 4px;
 
-  0%,
-  100% {
-    transform: scale(0.97);
-  }
+  opacity: 1;
 
-  50% {
-    transform: scale(1.025);
-  }
-}
-
-
-@keyframes innerLight {
-
-  0%,
-  100% {
-    opacity: 0.48;
-    transform: scale(0.88);
-  }
-
-  50% {
-    opacity: 0.72;
-    transform: scale(1);
-  }
-}
-
-
-@keyframes pointPulse {
-
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scale(0.85);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.12);
-  }
+  box-shadow:
+    0 0 9px rgba(140, 215, 245, 0.75),
+    0 0 22px rgba(93, 187, 230, 0.45),
+    0 0 42px rgba(74, 157, 204, 0.18);
 }
 
 
 /* =========================================================
-   17. ECRÃS PEQUENOS
+   TELAS PEQUENAS
    ========================================================= */
 
-@media (max-height: 600px) {
+@media (max-height: 620px) {
 
-  .machine-logo {
-    top: 12px;
-    left: 14px;
-  }
-
-  .settings-button {
-    top: 12px;
-    right: 14px;
-  }
-
-  .machine-core-area {
-    top: 76px;
-    bottom: 92px;
-  }
-
-  .machine-structure {
-    width: 150px;
-    height: 180px;
-  }
-
-  .machine-control {
-    width: 52px;
-    height: 52px;
-    font-size: 22px;
+  .machine-stage {
+    transform:
+      translate(-50%, -50%)
+      scale(0.82);
   }
 
   .machine-controls {
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
+    padding-bottom:
+      max(14px, env(safe-area-inset-bottom));
+  }
+
+  .control-button {
+    width: 56px;
+    height: 56px;
+
+    flex-basis: 56px;
   }
 }
 
 
-/* =========================================================
-   18. ECRÃS MUITO ESTREITOS
-   ========================================================= */
+@media (max-width: 350px) {
 
-@media (max-width: 360px) {
+  .machine-stage {
+    transform:
+      translate(-50%, -50%)
+      scale(0.86);
+  }
+
+  .control-button {
+    width: 55px;
+    height: 55px;
+
+    flex-basis: 55px;
+  }
 
   .machine-logo {
-    left: 12px;
+    width: 48px;
+    height: 48px;
   }
 
-  .settings-button {
-    right: 12px;
-  }
-
-  .machine-core-area {
-    left: 12px;
-    right: 12px;
-  }
-
-  .machine-controls {
-    left: 12px;
-    right: 12px;
+  .top-button {
+    width: 46px;
+    height: 46px;
   }
 }
 
 
 /* =========================================================
-   19. REDUÇÃO DE MOVIMENTO
+   ACESSIBILIDADE
    ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+button {
+  -webkit-tap-highlight-color: transparent;
+}
 
-  .structure-layer,
-  .machine-core,
-  .core-light,
-  .core-point {
-    animation: none;
-  }
-    }
+button:focus-visible {
+  outline: 2px solid rgba(180, 225, 245, 0.65);
+  outline-offset: 3px;
+   }
